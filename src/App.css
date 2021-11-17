@@ -11,6 +11,9 @@ h2 {
   font-size: 1rem;
   font-style: italic;
 }
+h3 {
+  margin-top: 5rem;
+}
 
 button {
   background-color: crimson;
@@ -20,6 +23,10 @@ button {
 input {
   width: 45px;
   margin: 1rem;
+}
+
+span {
+  color: green;
 }
 .idea {
   text-align: center;

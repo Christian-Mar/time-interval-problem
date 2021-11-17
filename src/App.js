@@ -10,8 +10,8 @@ function App() {
   const [minuts, setMinuts] = useState(0);
   const [seconds, setSeconds] = useState(0);
   const [milliseconds, setMilliseconds] = useState(0);
-  const [interval, setInterval] = useState('');
-  const [startTime, setStartTime] = useState('');
+  const [interval, setInterval] = useState(0);
+  const [startTime, setStartTime] = useState(0);
   
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -67,8 +67,8 @@ function App() {
 					milliseconds
 				</p>
 				<h3>
-					Now, let's define an interval of time as an amount of milliseconds
-					that we can add to a given timestamp to get a new time, starting form
+					Now, let's define an <span>interval</span> of time as an amount of milliseconds
+					that we can add to a given timestamp to get a new time, starting from
 					days, hours, minuts, seconds & milliseconds (3)
 				</h3>
 				<form onSubmit={handleSubmit}>
@@ -121,14 +121,30 @@ function App() {
 					<button type='submit'>Submit</button>
 				</form>
 				<p>In this case our given interval counts: {interval} milliseconds</p>
-				<h3>We add the interval (above) to a given date and time (4)</h3>
-        <label>Choose that given date & time:
-          <input type="datetime-local"
-            onChange={e => setStartTime(e.target.value)} 
-           value={startTime} className='givenTime'/>
-        </label>
-          <p>Timestamp of the new date (given date + interval): {(new Date(startTime)).getTime() + interval}</p> //useState van maken
-          <p></p>
+				<h3>We add the interval (above) to a <span>given date and time </span>(4)</h3>
+				<label>
+					Choose that given date & time:
+					<input
+						type='datetime-local'
+						onChange={e => setStartTime(e.target.value)}
+						value={startTime}
+						className='givenTime'
+					/>
+				</label>
+        <h3>Now we make the sum: <span>Given date/time + Interval </span>(5)</h3>
+				<p>
+					We count with timestamps and convert it to a readable date and time:
+					{new Intl.DateTimeFormat('nl-BE', {
+						year: 'numeric',
+						month: '2-digit',
+						day: '2-digit',
+						hour: '2-digit',
+						minute: '2-digit',
+						second: '2-digit',
+					}).format(Number(new Date(startTime).getTime() + interval))}{' '}
+					
+				</p>
+        <h3>Since we can count - adding an interval to a given moment - the challenge is to repeat that interval and define a limit in time to avoid an indefinite loop (6)</h3>
 			</div>
 		</div>
 	);
